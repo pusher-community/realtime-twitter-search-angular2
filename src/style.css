@@ -1,0 +1,76 @@
+body {
+  font-family: "Helvetica", "Arial";
+  background: url('img/pusher.png') no-repeat -100px -100px;
+}
+
+#app {
+  width: 80%;
+  max-width: 900px;
+  min-height: 600px;
+  background: white;
+  border: 1px solid #111;
+  padding: 10px;
+  margin: 30px;
+}
+
+#search-form {
+  border-bottom: 1px solid #111;
+}
+
+#search-form input {
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid black;
+  width: 80%;
+}
+
+#search-form button {
+  background: #40bad8;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 6px;
+  font-size: 18px;
+  float: right;
+}
+
+#channels-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+#subscription-controls {
+  margin: 0;
+  padding: 0;
+}
+#subscription-controls li {
+  list-style: none;
+  display: inline-block;
+  background: #40bad8;
+  color: white;
+  padding: 10px;
+}
+
+#subscription-controls li:hover {
+  cursor: pointer;
+  background: #111;
+}
+
+.channel {
+  border-bottom: 1px solid #111;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.channel-results {
+  padding: 10px;
+  margin: 5px;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.channel h2 {
+  font-weight: normal;
+  margin: 5px 0;
+}

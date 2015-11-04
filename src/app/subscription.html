@@ -1,0 +1,5 @@
+<ul class="channel-results channel-{{search}}">
+  <li *ng-for="#result of tweets">
+    <p>{{ result.tweet.text }} from {{ result.tweet.user.screen_name }}</p>
+  </li>
+</ul>

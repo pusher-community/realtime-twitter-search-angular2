@@ -1,0 +1,20 @@
+<div id="app">
+  <div id="search-form">
+    <form (ng-submit)="newSubscription()">
+      <input [(ng-model)]="newSearchTerm" placeholder="JavaScript" />
+      <button>Search</button>
+    </form>
+  </div>
+  <ul id="channels-list">
+    <li class="channel" *ng-for="#channel of channels">
+      <h2>Tweets for {{ channel }}</h2>
+      <ul id="subscription-controls">
+        <li (click)="stopSearch(channel)">Stop Stream</li>
+        <li (click)="clearSearch(channel)">Remove Results</li>
+      </ul>
+      <subscription [search]="channel" [pusher]="pusher"></subscription>
+    </li>
+  </ul>
+
+</div>
+
