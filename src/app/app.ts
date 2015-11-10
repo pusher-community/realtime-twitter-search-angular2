@@ -3,13 +3,9 @@ declare var Pusher: any;
 import {
   Component,
   Attribute,
-  Input,
   bootstrap,
   FORM_DIRECTIVES,
-  CORE_DIRECTIVES,
-  AfterViewChecked,
-  OnInit,
-  OnDestroy,
+  CORE_DIRECTIVES
 } from 'angular2/angular2';
 
 import SubscriptionComponent from './subscription';
@@ -29,10 +25,9 @@ class AppComponent {
     this.channels = [];
   }
 
-  public newSubscription(event) {
+  public newSubscription() {
     this.channels.push(this.newSearchTerm);
     this.newSearchTerm = '';
-    return false;
   }
 
   public clearSearch(channel) {

@@ -20,7 +20,7 @@ export default class SubscriptionComponent implements AfterViewChecked, OnDestro
   public tweets : Object[];
   private channel;
 
-  onInit() {
+  public onInit() {
     this.subscribeToChannel();
     this.tweets = [];
   }
@@ -38,15 +38,14 @@ export default class SubscriptionComponent implements AfterViewChecked, OnDestro
     this.tweets.push(data);
   }
 
-  onDestroy() {
+  public onDestroy() {
     this.channel && this.channel.unbind();
   }
 
-  afterViewChecked() {
+  public afterViewChecked() {
     var listItem = document.querySelector(".channel-" + this.search);
     if (listItem) {
       listItem.scrollTop = listItem.scrollHeight;
     }
   }
 }
-
