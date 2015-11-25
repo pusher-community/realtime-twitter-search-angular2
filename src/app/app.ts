@@ -12,7 +12,7 @@ import SubscriptionComponent from './subscription';
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'app/app.html',
+  templateUrl: 'src/app/app.html',
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, SubscriptionComponent],
 })
 class AppComponent {

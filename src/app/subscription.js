@@ -20,10 +20,7 @@ var SubscriptionComponent = (function () {
     SubscriptionComponent.prototype.subscribeToChannel = function () {
         var encoded = btoa(this.search);
         this.channel = this.pusher.subscribe(encoded);
-        this.channel.bind('new_tweet', function (data) {
-            console.log('got new tweet', data);
-            this.newTweet(data);
-        }.bind(this));
+        this.channel.bind('new_tweet', this.newTweet.bind(this));
     };
     SubscriptionComponent.prototype.newTweet = function (data) {
         this.tweets.push(data);
@@ -48,7 +45,7 @@ var SubscriptionComponent = (function () {
     SubscriptionComponent = __decorate([
         angular2_1.Component({
             selector: 'subscription',
-            templateUrl: 'app/subscription.html',
+            templateUrl: 'src/app/subscription.html',
             inputs: ['search', 'pusher'],
             directives: [angular2_1.CORE_DIRECTIVES]
         }), 

@@ -31,7 +31,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         angular2_1.Component({
             selector: 'my-app',
-            templateUrl: 'app/app.html',
+            templateUrl: 'src/app/app.html',
             directives: [angular2_1.FORM_DIRECTIVES, angular2_1.CORE_DIRECTIVES, subscription_1.default],
         }), 
         __metadata('design:paramtypes', [])

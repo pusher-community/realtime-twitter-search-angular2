@@ -10,7 +10,7 @@ import {
 
 @Component({
   selector: 'subscription',
-  templateUrl: 'app/subscription.html',
+  templateUrl: 'src/app/subscription.html',
   inputs: ['search', 'pusher'],
   directives: [CORE_DIRECTIVES]
 })
@@ -28,10 +28,7 @@ export default class SubscriptionComponent implements AfterViewChecked, OnDestro
   private subscribeToChannel() {
     var encoded = btoa(this.search);
     this.channel = this.pusher.subscribe(encoded);
-    this.channel.bind('new_tweet', function(data) {
-      console.log('got new tweet', data);
-      this.newTweet(data);
-    }.bind(this));
+    this.channel.bind('new_tweet', this.newTweet.bind(this));
   }
 
   private newTweet(data: Object) {
