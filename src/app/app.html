@@ -1,19 +1,43 @@
-<div id="app">
-  <div id="search-form">
-    <form (ng-submit)="newSubscription()">
-      <input [(ng-model)]="newSearchTerm" placeholder="JavaScript" />
-      <button>Search</button>
-    </form>
-  </div>
-  <ul id="channels-list">
-    <li class="channel" *ng-for="#channel of channels">
-      <h2>Tweets for {{ channel }}</h2>
-      <ul id="subscription-controls">
-        <li (click)="stopSearch(channel)">Stop Stream</li>
-        <li (click)="clearSearch(channel)">Remove Results</li>
-      </ul>
-      <subscription [search]="channel" [pusher]="pusher"></subscription>
-    </li>
-  </ul>
-</div>
+<div>
+  <section class="blue-gradient-background intro-splash splash">
+    <div class="container center-all-container">
+      <h1 class="white light splash-title">
+        Pusher Angular Realtime Demo
+      </h1>
 
+      <p class="white light splash-subtitle">
+        Displaying live tweets using Pusher and Angular 2.
+      </p>
+
+      <div id="search-form">
+        <form (ng-submit)="newSubscription()">
+          <input class="swish-input" [(ng-model)]="newSearchTerm" placeholder="JavaScript" />
+          <button class="bright-blue-hover btn-white">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div id="channels-list">
+        <div class="channel" *ng-for="#channel of channels">
+          <h2 class="white light">
+            Tweets for {{ channel }}
+          </h2>
+          <div id="subscription-controls">
+            <button class="btn-white secondary" (click)="stopSearch(channel)">
+              Stop Stream
+            </button>
+            <button class="btn-white secondary" (click)="clearSearch(channel)">
+              Remove Results
+            </button>
+          </div>
+          <subscription [search]="channel" [pusher]="pusher"></subscription>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>

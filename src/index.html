@@ -1,6 +1,8 @@
 <html>
   <head>
     <title>Angular 2 QuickStart</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="all-the-things.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
     <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
@@ -12,7 +14,26 @@
       System.import('app/app');
     </script>
   </head>
-  <body>
+  <body class="blue-gradient-background">
+    <div class="navbar navbar-inverse navbar-default" role="navigation">
+      <div class="container navbar-container">
+        <div class="navbar-header">
+          <div class="navbar-brand">
+            <a href="/">
+              <img class="full-logo" src="img/pusher-logo.png" width="111" height="37" />
+            </a>
+          </div>
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="signup-link" href="https://pusher.com/signup">Create a Free Account</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <my-app></my-app>
   </body>
 </html>
