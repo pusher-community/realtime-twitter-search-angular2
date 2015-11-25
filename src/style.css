@@ -12,6 +12,14 @@
   margin-bottom: 20px;
 }
 
+#subscription-controls button {
+  padding: 10px 15px;
+}
+
 .twitter-icon {
   vertical-align: top;
+}
+
+.tweets-container {
+  width: 800px;
 }
