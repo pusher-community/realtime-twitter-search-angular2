@@ -22,9 +22,10 @@
     <div class="container">
       <div id="channels-list">
         <div class="channel" *ng-for="#channel of channels">
-          <h2 class="white light">
+          <h3 class="white light">
+            <img src="/src/img/twitter.png" width="30" />
             Tweets for {{ channel }}
-          </h2>
+          </h3>
           <div id="subscription-controls">
             <button class="btn-white secondary" (click)="stopSearch(channel)">
               Stop Stream
