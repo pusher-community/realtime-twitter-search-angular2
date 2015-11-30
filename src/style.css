@@ -2,6 +2,10 @@
   margin-top: 30px;
 }
 
+.channel {
+  margin-bottom: 50px;
+}
+
 .channel-results {
   list-style: none;
   padding: 0;
