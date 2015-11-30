@@ -2,7 +2,7 @@
 
 A client of the [Pusher Datasource API](https://github.com/pusher-community/pusher-datasource-api) that lets you search for tweets and view the results in realtime.
 
-![](./screenshot.png);
+![](./screenshot.png)
 
 ## Running
 
