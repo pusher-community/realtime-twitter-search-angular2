@@ -1,4 +1,4 @@
-<ul class="channel-results channel-{{search}}">
+<ul class="channel-results channel-{{search.term}}">
   <li *ng-for="#result of tweets">
     <p class="white">{{ result.tweet.text }}</p>
   </li>

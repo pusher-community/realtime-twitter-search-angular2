@@ -24,11 +24,11 @@
         <div class="channel" *ng-for="#channel of channels">
           <h3 class="white light">
             <img class="twitter-icon" src="src/img/twitter.png" width="30" />
-            Tweets for {{ channel }}
+            Tweets for {{ channel.term }}
           </h3>
           <div id="subscription-controls">
-            <button class="btn-white secondary" (click)="stopSearch(channel)">
-              Stop Stream
+            <button class="btn-white secondary" (click)="toggleSearch(channel)">
+              {{channel.active ? 'Stop' : 'Restart'}} Stream
             </button>
             <button class="btn-white secondary" (click)="clearSearch(channel)">
               Remove Results

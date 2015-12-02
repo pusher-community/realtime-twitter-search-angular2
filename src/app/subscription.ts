@@ -1,48 +1,68 @@
 import {
   Component,
-  Input,
-  FORM_DIRECTIVES,
-  CORE_DIRECTIVES,
-  AfterViewChecked,
-  OnInit,
-  OnDestroy,
+  Input
 } from 'angular2/angular2';
 
 @Component({
   selector: 'subscription',
   templateUrl: 'src/app/subscription.html',
-  inputs: ['search', 'pusher'],
-  directives: [CORE_DIRECTIVES]
+  inputs: ['search', 'pusher']
 })
-export default class SubscriptionComponent implements AfterViewChecked, OnDestroy, OnInit {
-  @Input() search: string;
+export default class SubscriptionComponent {
+  @Input() search: any;
   @Input() pusher;
   public tweets : Object[];
   private channel;
+  private subscribed: boolean = false;
 
-  public onInit() {
+  private ngOnInit() {
     this.subscribeToChannel();
     this.tweets = [];
   }
 
   private subscribeToChannel() {
-    var encoded = btoa(this.search);
-    this.channel = this.pusher.subscribe(encoded);
-    this.channel.bind('new_tweet', this.newTweet.bind(this));
+    this.channel = this.pusher.subscribe(btoa(this.search.term));
+    this.channel.bind('new_tweet', (data) => {
+      this.newTweet(data);
+    });
+    this.subscribed = true;
   }
 
   private newTweet(data: Object) {
     this.tweets.push(data);
   }
+  
+  // TODO: bring back when working correctly (see bottom of ngAfterViewChecked)
+  // This should fire anytime bindings are modified from AppComponent but it's not
+  // Don't have time to debug at moment, but fix if you can :)
+  // private ngOnChanges() {
+  //   console.log(this.search);
+  //   if (!this.search.active && this.subscribed) {
+  //     this.ngOnDestroy();
+  //   } else if (this.search.active && !this.subscribed) {
+  //     this.subscribeToChannel();
+  //   }
+  // }
 
-  public onDestroy() {
+  private ngOnDestroy() {
+    this.pusher.unsubscribe(btoa(this.search.term));
     this.channel && this.channel.unbind();
+    this.subscribed = false;
   }
 
-  public afterViewChecked() {
-    var listItem = document.querySelector(".channel-" + this.search);
+  private ngAfterViewChecked() {
+    var listItem = document.querySelector(".channel-" + this.search.term);
     if (listItem) {
       listItem.scrollTop = listItem.scrollHeight;
     }
+    
+    // TODO: Remove when ngOnChanges above works properly
+    // Not sure why ngOnChanges is not working right now
+    if (!this.search.active && this.subscribed) {
+      this.ngOnDestroy();
+    } else if (this.search.active && !this.subscribed) {
+      this.subscribeToChannel();
+    }
+    
   }
 }
