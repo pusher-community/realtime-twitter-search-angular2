@@ -3,9 +3,7 @@ declare var Pusher: any;
 import {
   Component,
   Attribute,
-  bootstrap,
-  FORM_DIRECTIVES,
-  CORE_DIRECTIVES
+  bootstrap
 } from 'angular2/angular2';
 
 import SubscriptionComponent from './subscription';
@@ -13,12 +11,12 @@ import SubscriptionComponent from './subscription';
 @Component({
   selector: 'my-app',
   templateUrl: 'src/app/app.html',
-  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, SubscriptionComponent],
+  directives: [SubscriptionComponent],
 })
 class AppComponent {
   private newSearchTerm: string;
   private pusher;
-  private channels: String[];
+  private channels: any[];
 
   constructor() {
     this.pusher = new Pusher('9fd1b33fcb36d968145f');
@@ -26,17 +24,25 @@ class AppComponent {
   }
 
   public newSubscription() {
-    this.channels.push(this.newSearchTerm);
+    this.channels.push({term: this.newSearchTerm, active: true});
     this.newSearchTerm = '';
   }
 
   public clearSearch(channel) {
-    this.channels = this.channels.filter(function(ch) {
-      return ch !== channel;
+    this.channels = this.channels.filter((ch) => {
+      if (ch.term === channel.term) {
+        this.toggleSearch(channel);
+      }
+      return ch.term !== channel.term;
     });
   }
-  public stopSearch(channel) {
-    this.pusher.unsubscribe(btoa(channel));
+  public toggleSearch(channel) {
+    for (let ch of this.channels) {
+      if (ch.term === channel.term) {
+        ch.active = !ch.active;
+        break;
+      }
+    }
   }
 }
 
