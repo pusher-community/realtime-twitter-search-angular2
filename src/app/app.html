@@ -10,8 +10,8 @@
       </p>
 
       <div id="search-form">
-        <form (ng-submit)="newSubscription()">
-          <input class="swish-input" [(ng-model)]="newSearchTerm" placeholder="JavaScript" />
+        <form (ngSubmit)="newSubscription()">
+          <input class="swish-input" [(ngModel)]="newSearchTerm" placeholder="JavaScript" />
           <button class="bright-blue-hover btn-white">Search</button>
         </form>
       </div>
@@ -21,7 +21,7 @@
   <section>
     <div class="container tweets-container">
       <div id="channels-list">
-        <div class="channel" *ng-for="#channel of channels">
+        <div class="channel" *ngFor="#channel of channels">
           <h3 class="white light">
             <img class="twitter-icon" src="src/img/twitter.png" width="30" />
             Tweets for {{ channel.term }}
