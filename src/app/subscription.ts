@@ -1,21 +1,23 @@
 import {
   Component,
-  Input
-} from 'angular2/angular2';
+  Input,
+  AfterViewChecked,
+  OnInit,
+  OnDestroy,
+} from 'angular2/core';
 
 @Component({
   selector: 'subscription',
-  templateUrl: 'src/app/subscription.html',
-  inputs: ['search', 'pusher']
+  templateUrl: 'src/app/subscription.html'
 })
-export default class SubscriptionComponent {
+export default class SubscriptionComponent implements OnInit, OnDestroy, AfterViewChecked {
   @Input() search: any;
   @Input() pusher;
   public tweets : Object[];
   private channel;
   private subscribed: boolean = false;
 
-  private ngOnInit() {
+  public ngOnInit() {
     this.subscribeToChannel();
     this.tweets = [];
   }
@@ -35,7 +37,7 @@ export default class SubscriptionComponent {
   // TODO: bring back when working correctly (see bottom of ngAfterViewChecked)
   // This should fire anytime bindings are modified from AppComponent but it's not
   // Don't have time to debug at moment, but fix if you can :)
-  // private ngOnChanges() {
+  // public ngOnChanges() {
   //   console.log(this.search);
   //   if (!this.search.active && this.subscribed) {
   //     this.ngOnDestroy();
@@ -44,13 +46,13 @@ export default class SubscriptionComponent {
   //   }
   // }
 
-  private ngOnDestroy() {
+  public ngOnDestroy() {
     this.pusher.unsubscribe(btoa(this.search.term));
     this.channel && this.channel.unbind();
     this.subscribed = false;
   }
 
-  private ngAfterViewChecked() {
+  public ngAfterViewChecked() {
     var listItem = document.querySelector(".channel-" + this.search.term);
     if (listItem) {
       listItem.scrollTop = listItem.scrollHeight;
