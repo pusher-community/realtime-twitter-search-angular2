@@ -16,10 +16,12 @@ export default class SubscriptionComponent implements OnInit, OnDestroy, AfterVi
   public tweets : Object[];
   private channel;
   private subscribed: boolean = false;
+  private className: String;
 
   public ngOnInit() {
     this.subscribeToChannel();
     this.tweets = [];
+    this.className = this.search.term.replace(' ', '-');
   }
 
   private subscribeToChannel() {
@@ -53,7 +55,7 @@ export default class SubscriptionComponent implements OnInit, OnDestroy, AfterVi
   }
 
   public ngAfterViewChecked() {
-    var listItem = document.querySelector(".channel-" + this.search.term);
+    var listItem = document.querySelector(".channel-" + this.className);
     if (listItem) {
       listItem.scrollTop = listItem.scrollHeight;
     }
