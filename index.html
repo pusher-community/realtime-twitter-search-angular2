@@ -6,14 +6,42 @@
     <link rel="stylesheet" type="text/css" href="src/style.css" />
     <script src="https://code.angularjs.org/tools/system.js"></script>
 
-    <script src="https://code.angularjs.org/2.0.0-alpha.47/angular2.dev.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/zone.js/dist/zone.min.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
+    <script src="node_modules/@angular/core/core.umd.js"></script>
+    <script src="node_modules/@angular/common/common.umd.js"></script>
+    <script src="node_modules/@angular/compiler/compiler.umd.js"></script>
+    <script src="node_modules/@angular/http/http.umd.js"></script>
+    <script src="node_modules/@angular/platform-browser/platform-browser.umd.js"></script>
+    <script src="node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.umd.js"></script>
+    
 
     <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
     <script>
       System.config({
-        packages: {'src/app': {defaultExtension: 'js'}}
+        map: {
+          '@angular/core': 'node_modules/@angular/core/core.umd.js',
+          '@angular/common': 'node_modules/@angular/common/common.umd.js',
+          '@angular/compiler': 'node_modules/@angular/compiler/compiler.umd.js',
+          '@angular/http': 'node_modules/@angular/http/http.umd.js',
+          '@angular/platform-browser': 'node_modules/@angular/platform-browser/platform-browser.umd.js',
+          '@angular/platform-browser-dynamic': 'node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.umd.js'
+        },
+        paths: {
+          'rxjs/*': 'node_modules/rxjs/*'
+        },
+        packages: {
+          'src/app': {
+            main: 'app.js',
+            defaultExtension: 'js'
+          },
+          'rxjs': {
+            defaultExtension: 'js'
+          }
+        }
       });
-      System.import('src/app/app');
+      System.import('src/app');
     </script>
   </head>
   <body class="blue-gradient-background">

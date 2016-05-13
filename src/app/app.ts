@@ -1,10 +1,10 @@
 declare var Pusher: any;
 
+import {bootstrap} from '@angular/platform-browser-dynamic';
 import {
   Component,
-  Attribute,
-  bootstrap
-} from 'angular2/angular2';
+  Attribute
+} from '@angular/core';
 
 import SubscriptionComponent from './subscription';
 

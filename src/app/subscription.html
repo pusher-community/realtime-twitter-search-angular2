@@ -1,5 +1,5 @@
-<ul class="channel-results channel-{{search.term}}">
-  <li *ng-for="#result of tweets">
-    <p class="white">{{ result.tweet.text }}</p>
+<ul class="channel-results channel-{{className}}">
+  <li *ngFor="let result of tweets">
+    <p class="white" [innerHTML]="result.tweet.text"></p>
   </li>
 </ul>
