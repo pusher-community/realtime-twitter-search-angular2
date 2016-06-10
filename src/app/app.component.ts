@@ -3,11 +3,12 @@ declare var Pusher: any;
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {Component} from '@angular/core';
 
-import SubscriptionComponent from './subscription';
+import SubscriptionComponent from './subscription.component';
 
 @Component({
+  moduleId: module.id,
   selector: 'my-app',
-  templateUrl: 'src/app/app.html',
+  templateUrl: 'app.component.html',
   directives: [SubscriptionComponent],
 })
 class AppComponent {

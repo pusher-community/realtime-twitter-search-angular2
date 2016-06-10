@@ -4,35 +4,45 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="src/all-the-things.css" />
     <link rel="stylesheet" type="text/css" href="src/style.css" />
-    <script src="https://code.angularjs.org/tools/system.js"></script>
 
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/zone.js/dist/zone.min.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.umd.js"></script>
-    <script src="node_modules/@angular/core/core.umd.js"></script>
-    <script src="node_modules/@angular/common/common.umd.js"></script>
-    <script src="node_modules/@angular/compiler/compiler.umd.js"></script>
-    <script src="node_modules/@angular/http/http.umd.js"></script>
-    <script src="node_modules/@angular/platform-browser/platform-browser.umd.js"></script>
-    <script src="node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.umd.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
 
     <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
     <script>
       System.config({
-        map: {
-          '@angular/core': 'node_modules/@angular/core/core.umd.js',
-          '@angular/common': 'node_modules/@angular/common/common.umd.js',
-          '@angular/compiler': 'node_modules/@angular/compiler/compiler.umd.js',
-          '@angular/http': 'node_modules/@angular/http/http.umd.js',
-          '@angular/platform-browser': 'node_modules/@angular/platform-browser/platform-browser.umd.js',
-          '@angular/platform-browser-dynamic': 'node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.umd.js'
-        },
+        defaultJSExtensions: true,
         paths: {
-          'rxjs/*': 'node_modules/rxjs/*'
+          'src/*': 'src/*',
+          '*': 'node_modules/*'
         },
         packages: {
           'src/app': {
-            main: 'app.js',
+            main: 'app.component.js',
+            defaultExtension: 'js'
+          },
+          '@angular/common': {
+            main: 'index.js',
+            defaultExtension: 'js'
+          },
+          '@angular/compiler': {
+            main: 'index.js',
+            defaultExtension: 'js'
+          },
+          '@angular/core': {
+            main: 'index.js',
+            defaultExtension: 'js'
+          },
+          '@angular/platform-browser': {
+            main: 'index.js',
+            defaultExtension: 'js'
+          },
+          '@angular/platform-browser-dynamic': {
+            main: 'index.js',
             defaultExtension: 'js'
           },
           'rxjs': {
