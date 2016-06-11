@@ -3,14 +3,16 @@ import {
   Input,
   AfterViewChecked,
   OnInit,
-  OnDestroy,
-} from 'angular2/core';
+  OnChanges,
+  OnDestroy
+} from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'subscription',
-  templateUrl: 'src/app/subscription.html'
+  templateUrl: 'subscription.component.html'
 })
-export default class SubscriptionComponent implements OnInit, OnDestroy, AfterViewChecked {
+export default class SubscriptionComponent implements OnInit, OnChanges, OnDestroy, AfterViewChecked {
   @Input() search: any;
   @Input() pusher;
   public tweets : Object[];
@@ -36,17 +38,14 @@ export default class SubscriptionComponent implements OnInit, OnDestroy, AfterVi
     this.tweets.push(data);
   }
   
-  // TODO: bring back when working correctly (see bottom of ngAfterViewChecked)
-  // This should fire anytime bindings are modified from AppComponent but it's not
-  // Don't have time to debug at moment, but fix if you can :)
-  // public ngOnChanges() {
-  //   console.log(this.search);
-  //   if (!this.search.active && this.subscribed) {
-  //     this.ngOnDestroy();
-  //   } else if (this.search.active && !this.subscribed) {
-  //     this.subscribeToChannel();
-  //   }
-  // }
+  public ngOnChanges() {
+    console.log(this.search);
+    if (!this.search.active && this.subscribed) {
+      this.ngOnDestroy();
+    } else if (this.search.active && !this.subscribed) {
+      this.subscribeToChannel();
+    }
+  }
 
   public ngOnDestroy() {
     this.pusher.unsubscribe(btoa(this.search.term));
@@ -59,14 +58,5 @@ export default class SubscriptionComponent implements OnInit, OnDestroy, AfterVi
     if (listItem) {
       listItem.scrollTop = listItem.scrollHeight;
     }
-    
-    // TODO: Remove when ngOnChanges above works properly
-    // Not sure why ngOnChanges is not working right now
-    if (!this.search.active && this.subscribed) {
-      this.ngOnDestroy();
-    } else if (this.search.active && !this.subscribed) {
-      this.subscribeToChannel();
-    }
-    
   }
 }

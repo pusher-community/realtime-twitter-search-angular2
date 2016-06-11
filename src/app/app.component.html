@@ -21,7 +21,7 @@
   <section>
     <div class="container tweets-container">
       <div id="channels-list">
-        <div class="channel" *ngFor="#channel of channels">
+        <div class="channel" *ngFor="let channel of channels">
           <h3 class="white light">
             <img class="twitter-icon" src="src/img/twitter.png" width="30" />
             Tweets for {{ channel.term }}
